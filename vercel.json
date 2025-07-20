@@ -1,0 +1,18 @@
+{
+    "name": "face-tracking-app",
+    "version": "2",
+    "builds": [
+        {
+            "src": "package.json",
+            "use": "@vercel/next"
+        }
+    ],
+    "routes": [
+        {
+            "src": "/models/(.*)",
+            "headers": {
+                "Cache-Control": "s-maxage=31536000, immutable"
+            }
+        }
+    ]
+}

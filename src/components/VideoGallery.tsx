@@ -8,7 +8,6 @@ import {
     formatFileSize,
     formatDuration,
     SavedVideo,
-    getVideoById
 } from '@/utils/videoStorage';
 
 const VideoGallery: React.FC = () => {

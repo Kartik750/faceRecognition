@@ -57,26 +57,27 @@ export const useFaceDetection = (): UseFaceDetectionReturn => {
                 if (videoRef.current) {
                     videoRef.current.srcObject = stream;
                 }
-            } catch (err: any) {
+            } catch (err: unknown) {
                 console.error('Error accessing camera:', err);
                 let errorMessage = 'Failed to access camera';
 
-                if (err.name === 'NotFoundError') {
+                const error = err as { name?: string };
+                if (error.name === 'NotFoundError') {
                     errorMessage = 'No camera found. Please ensure a camera is connected and try again.';
-                } else if (err.name === 'NotAllowedError') {
+                } else if (error.name === 'NotAllowedError') {
                     errorMessage = 'Camera access denied. Please allow camera permissions and refresh the page.';
-                } else if (err.name === 'NotSupportedError') {
+                } else if (error.name === 'NotSupportedError') {
                     errorMessage = 'Camera not supported in this browser. Please use a modern browser like Chrome, Firefox, or Safari.';
-                } else if (err.name === 'NotReadableError') {
+                } else if (error.name === 'NotReadableError') {
                     errorMessage = 'Camera is busy or not accessible. Please close other apps using the camera and try again.';
-                } else if (err.name === 'OverconstrainedError') {
+                } else if (error.name === 'OverconstrainedError') {
                     errorMessage = 'Camera settings not supported. Trying with different settings...';
                 }
 
                 setError(errorMessage);
 
                 // If overconstrained, try with more relaxed constraints
-                if (err.name === 'OverconstrainedError') {
+                if (error.name === 'OverconstrainedError') {
                     try {
                         const fallbackStream = await navigator.mediaDevices.getUserMedia({
                             video: true,

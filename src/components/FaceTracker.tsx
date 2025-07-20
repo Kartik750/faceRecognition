@@ -22,7 +22,6 @@ const FaceTracker: React.FC = () => {
     const {
         isRecording,
         isPaused,
-        recordedChunks,
         error: recordingError,
         startRecording,
         stopRecording,
