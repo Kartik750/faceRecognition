@@ -1,6 +1,6 @@
 {
   "name": "face-recognition",
-  "version": 1,
+  "version": "",
   "private": true,
   "scripts": {
     "dev": "next dev --turbopack",
