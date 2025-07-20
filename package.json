@@ -1,6 +1,14 @@
 {
   "name": "face-recognition",
-  "version": "",
+{
+"version" : "",
+"builds" :[
+{
+"src": "server.js",
+"use": "@vercel/node"
+}
+]
+},
   "private": true,
   "scripts": {
     "dev": "next dev --turbopack",
